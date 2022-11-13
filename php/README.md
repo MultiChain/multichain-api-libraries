@@ -29,7 +29,6 @@ How to Use the Library
 	$rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
 
 	$mc=new MultiChainClient($rpchost, $rpcport, $rpcuser, $rpcpassword);
-
 ```
 
 4. Access any of MultiChain's [API commands](https://www.multichain.com/developers/json-rpc-api/) in the intuitive way, e.g.:
@@ -72,7 +71,7 @@ After setting up the API proxy, use this library to connect to it as follows:
 	$mc=new MultiChainClient($sslhost, $sslport, $rpcuser, $rpcpassword, $usessl);
 ```
 
-To turn off SSL certification verification, call this immediately afterwards:
+If you wish to turn off SSL certification verification (less secure), call this immediately afterwards:
 
 ```
 	$mc->setoption(MC_OPT_VERIFY_SSL, false);
