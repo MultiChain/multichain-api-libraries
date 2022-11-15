@@ -32,7 +32,7 @@ class MultiChainClient
         $this->chainname = null;
         $this->usessl = $usessl;
         $this->usecurl = $usessl; 
-        $this->verfyssl = true;
+        $this->verifyssl = true;
         $this->error_code = 0;
         $this->error_message = "";
     }
@@ -48,7 +48,7 @@ class MultiChainClient
                 $this->usecurl = $value;
                 break;
             case MC_OPT_VERIFY_SSL:
-                $this->verfyssl = $value;
+                $this->verifyssl = $value;
                 break;
             default:
                 return false;
@@ -78,18 +78,18 @@ class MultiChainClient
         $decoded = NULL;
         if(!is_null($encoded))
         {
-            $decoded = json_decode($encoded);
+            $decoded = json_decode($encoded,true);
         }
 
         if(!is_null($decoded))
         {
-            if(property_exists($decoded, 'error') && property_exists($decoded, 'result')) 
+            if(array_key_exists('error',$decoded) && array_key_exists('result',$decoded)) 
             {
                 $this->error_code = 0; 
-                if(!is_null($decoded->error))
+                if(!is_null($decoded['error']))
                 {
-                    $this->error_code = $decoded->error->code;
-                    $this->error_message = $decoded->error->message;
+                    $this->error_code = $decoded['error']['code'];
+                    $this->error_message = $decoded['error']['message'];
                     if($this->error_code == -1) 
                     {
                         if(strpos($this->error_message,"\n\n") !== false)
@@ -100,7 +100,7 @@ class MultiChainClient
                 }
                 else
                 {
-                    $result = $decoded->result;
+                    $result = $decoded['result'];
                     $this->error_message = "";
                 }
             }
@@ -203,7 +203,7 @@ class MultiChainClient
             curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             
-            if(!$this->verfyssl)
+            if(!$this->verifyssl)
             {
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
