@@ -1,11 +1,15 @@
 <?php
 
 /*
-	MultiChain API Library for PHP (c) Coin Sciences Ltd
-	All rights reserved under BSD 3-clause license
-	
-	See README file for instructions and examples.php for examples
+    MultiChain JSON-RPC API Library for PHP
+    
+    Copyright (c) Coin Sciences Ltd - www.multichain.com
+
+    All rights reserved under BSD 3-clause license
+    
+    See README file for instructions and examples.php for examples
 */
+
 
 define('MC_DEFAULT_ERROR_CODE', 502); 
 

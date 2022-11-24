@@ -1,12 +1,16 @@
 <?php
 
 /*
-	MultiChain API Library for PHP (c) Coin Sciences Ltd
-	All rights reserved under BSD 3-clause license
+    MultiChain JSON-RPC API Library for PHP
+    
+    Copyright (c) Coin Sciences Ltd - www.multichain.com
 
-	Examples of PHP library usage, for more details see:
-	https://www.multichain.com/developers/json-rpc-api/
+    All rights reserved under BSD 3-clause license
+    
+    Examples of PHP library usage, for more details see:
+    https://www.multichain.com/developers/json-rpc-api/
 */
+
 
 exit; // in case this file is included accidentally!
 
@@ -105,8 +109,8 @@ $result = $mc->listassets('asset1'); // one specific asset
 $result = $mc->listassets(['asset1', 'asset2']); // multiple specific assets
 $result = $mc->listassets('*', false, 10, 30); // paging through assets
 
-$txid = $mc->update('asset1', ['open'  =>  true]);
-$txid = $mc->updatefrom($fromaddress, 'asset1', ['open'  =>  false]);
+$txid = $mc->update('asset1', ['open' => true]);
+$txid = $mc->updatefrom($fromaddress, 'asset1', ['open' => false]);
 
 
 /***********************************************/
@@ -204,12 +208,12 @@ $txid = $mc->publishfrom($fromaddress, 'stream1', 'key1', 'a1b2c3d4');
 
 // see online API documentation for multi-publishing offchain
 $txid = $mc->publishmulti('stream1', [
-	['key' => 'key1', 'data' => ['json' => ['name' => 'John', 'age' => 30]]],
-	['keys' => ['key2', 'key3'], 'data' => ['json' => ['name' => 'Iogan', 'age' => 20]]]
+    ['key' => 'key1', 'data' => ['json' => ['name' => 'John', 'age' => 30]]],
+    ['keys' => ['key2', 'key3'], 'data' => ['json' => ['name' => 'Iogan', 'age' => 20]]]
 ]);
 $txid = $mc->publishmultifrom($fromaddress, 'stream1', [
-	['key' => 'key1', 'data' => ['json' => ['name' => 'John', 'age' => 30]]],
-	['keys' => ['key2', 'key3'], 'data' => ['json' => ['name' => 'Iogan', 'age' => 20]]]
+    ['key' => 'key1', 'data' => ['json' => ['name' => 'John', 'age' => 30]]],
+    ['keys' => ['key2', 'key3'], 'data' => ['json' => ['name' => 'Iogan', 'age' => 20]]]
 ]);
 
 
@@ -262,7 +266,7 @@ $result = $mc->liststreamblockitems('stream1', 1234); // one block
 $result = $mc->liststreamblockitems('stream1', '1-100'); // block range
 $result = $mc->liststreamblockitems('stream1', -10); // most recent blocks
 $result = $mc->liststreamblockitems('stream1',
-	['starttime' => 1577836800, 'endtime' => 1609459199]); // blocks stamped in time range
+    ['starttime' => 1577836800, 'endtime' => 1609459199]); // blocks stamped in time range
 
 $result = $mc->getstreamkeysummary('stream1', 'key1', 'jsonobjectmerge');
 $result = $mc->getstreampublishersummary('stream1', $address, 'jsonobjectmerge,recursive');
@@ -286,7 +290,7 @@ $result = $mc->purgepublisheditems([$txid1, $txid2]); // multiple specific trans
 $result = $mc->purgepublisheditems(['blocks' => 1234]); // one specific block
 $result = $mc->purgepublisheditems(['blocks' => '1-100']); // block range
 $result = $mc->purgepublisheditems(['blocks' =>
-	['starttime' => 1577836800, 'endtime' => 1609459199]]); // blocks in time range
+    ['starttime' => 1577836800, 'endtime' => 1609459199]]); // blocks in time range
 
 $result = $mc->purgestreamitems('stream1', 'all'); // all retrieved data in stream
 $result = $mc->purgestreamitems('stream1', $txid); // one specific transaction
@@ -294,7 +298,7 @@ $result = $mc->purgestreamitems('stream1', [$txid1, $txid2]); // multiple specif
 $result = $mc->purgestreamitems('stream1', ['blocks' => 1234]); // one specific block
 $result = $mc->purgestreamitems('stream1', ['blocks' => '1-100']); // block range
 $result = $mc->purgestreamitems('stream1', ['blocks' =>
-	['starttime' => 1577836800, 'endtime' => 1609459199]]); // blocks in time range
+    ['starttime' => 1577836800, 'endtime' => 1609459199]]); // blocks in time range
 $result = $mc->purgestreamitems('stream1', ['key' => 'key1']); // one specific key
 $result = $mc->purgestreamitems('stream1', ['keys' => ['key1', 'key2']]); // items with both keys (AND logic)
 $result = $mc->purgestreamitems('stream1', ['publisher' => $address]); // one specific publisher
@@ -305,7 +309,7 @@ $result = $mc->retrievestreamitems('stream1', [$txid1, $txid2]); // multiple spe
 $result = $mc->retrievestreamitems('stream1', ['blocks' => 1234]); // one specific block
 $result = $mc->retrievestreamitems('stream1', ['blocks' => '1-100']); // block range
 $result = $mc->retrievestreamitems('stream1', ['blocks' =>
-	['starttime' => 1577836800, 'endtime' => 1609459199]]); // blocks in time range
+    ['starttime' => 1577836800, 'endtime' => 1609459199]]); // blocks in time range
 $result = $mc->retrievestreamitems('stream1', ['key' => 'key1']); // one specific key
 $result = $mc->retrievestreamitems('stream1', ['keys' => ['key1', 'key2']]); // items with both keys (AND logic)
 $result = $mc->retrievestreamitems('stream1', ['publisher' => $address]); // one specific publisher
@@ -336,27 +340,27 @@ $result = $mc->lockunspent(true, [['txid' => $txid, 'vout' => $vout]]); // unloc
 // also see next section here for many examples using createrawsendfrom
 
 $txhex = $mc->appendrawdata($txhex_in,
-	['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']
+    ['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']
 );
 
 $txhex = $mc->appendrawtransaction($txhex_in,
-	[['txid' => $txid1, 'vout' => $vout1], ['txid' => $txid2, 'vout' => $vout2]], // inputs to add
-	[$address1 => ['asset1' => 10], $address2 => ['asset2' => 20]], // address-based outputs to add
-	[['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']], // data outputs to add
-	'sign' // additional action to perform
+    [['txid' => $txid1, 'vout' => $vout1], ['txid' => $txid2, 'vout' => $vout2]], // inputs to add
+    [$address1 => ['asset1' => 10], $address2 => ['asset2' => 20]], // address-based outputs to add
+    [['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']], // data outputs to add
+    'sign' // additional action to perform
 );
 
 $txhex = $mc->createrawtransaction(
-	[['txid' => $txid1, 'vout' => $vout1], ['txid' => $txid2, 'vout' => $vout2]], // inputs to add
-	[$address1 => ['asset1' => 10], $address2 => ['asset2' => 20]], // address-based outputs to add
-	[['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']], // data outputs to add
-	'send' // additional action to perform
+    [['txid' => $txid1, 'vout' => $vout1], ['txid' => $txid2, 'vout' => $vout2]], // inputs to add
+    [$address1 => ['asset1' => 10], $address2 => ['asset2' => 20]], // address-based outputs to add
+    [['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']], // data outputs to add
+    'send' // additional action to perform
 );
 
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address1 => ['asset1' => 10], $address2 => ['asset2' => 20]], // address-based outputs to add
-	[['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']], // data outputs to add
-	'send' // additional action to perform
+    [$address1 => ['asset1' => 10], $address2 => ['asset2' => 20]], // address-based outputs to add
+    [['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']], // data outputs to add
+    'send' // additional action to perform
 );
 
 $txhex = $mc->appendrawchange($txhex_in, $address);
@@ -378,95 +382,95 @@ $txid = $mc->createrawsendfrom($fromaddress, [$address => 0], [], 'send'); // si
 
 // publishing stream item(s)
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']]); // raw binary data
+    [['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4']]); // raw binary data
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['for' => 'stream1', 'key' => 'key1', 'data' => ['text' => 'hello world']]]); // text data
+    [['for' => 'stream1', 'key' => 'key1', 'data' => ['text' => 'hello world']]]); // text data
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['for' => 'stream1', 'key' => 'key1', 'data' => ['json' => ['name' => 'John', 'age' => 30]]]]); // JSON data
+    [['for' => 'stream1', 'key' => 'key1', 'data' => ['json' => ['name' => 'John', 'age' => 30]]]]); // JSON data
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['for' => 'stream1', 'key' => 'key1', 'data' => ['cache' => 'Ev1HQV1aUCY']]]); // data from binary cache
+    [['for' => 'stream1', 'key' => 'key1', 'data' => ['cache' => 'Ev1HQV1aUCY']]]); // data from binary cache
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['for' => 'stream1', 'keys' => ['key1', 'key2'], 'data' => 'a1b2c3d4']]); // multiple keys
+    [['for' => 'stream1', 'keys' => ['key1', 'key2'], 'data' => 'a1b2c3d4']]); // multiple keys
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4', 'options' => 'offchain']]); // data offchain
+    [['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4', 'options' => 'offchain']]); // data offchain
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[], [
-	['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4'],
-	['for' => 'stream2', 'key' => 'key2', 'data' => ['text' => 'hello world']]
+    ['for' => 'stream1', 'key' => 'key1', 'data' => 'a1b2c3d4'],
+    ['for' => 'stream2', 'key' => 'key2', 'data' => ['text' => 'hello world']]
 ]); // multiple items
 
 // sending native currency, asset(s), token(s)
 $txhex = $mc->createrawsendfrom($fromaddress, [$address => 1.0]); // native currency
 $txhex = $mc->createrawsendfrom($fromaddress, [$address => ['asset1' => 10]]); // asset
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address1 => ['asset1' => 100], $address2 => ['asset1' => 10]]); // asset to two addresses
+    [$address1 => ['asset1' => 100], $address2 => ['asset1' => 10]]); // asset to two addresses
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['nfts1' => ['token' => 'token1', 'qty' => 1]]]); // token
+    [$address => ['nfts1' => ['token' => 'token1', 'qty' => 1]]]); // token
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['nfts1' => [['token' => 'token1', 'qty' => 1], ['token' => 'token2', 'qty' => 1]]]]); // two tokens
+    [$address => ['nfts1' => [['token' => 'token1', 'qty' => 1], ['token' => 'token2', 'qty' => 1]]]]); // two tokens
 
 // sending asset or token with metadata
 $txhex = $mc->createrawsendfrom($fromaddress, [$address => ['asset1' => 10]],
-	['a1c3b245d37e']); // asset with raw binary metadata
+    ['a1c3b245d37e']); // asset with raw binary metadata
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['nfts1' => ['token' => 'token1', 'qty' => 1]]],
-	[['for' => 'stream1', 'key' => 'key1', 'data' => ['json' => ['name' => 'John']]]]
+    [$address => ['nfts1' => ['token' => 'token1', 'qty' => 1]]],
+    [['for' => 'stream1', 'key' => 'key1', 'data' => ['json' => ['name' => 'John']]]]
 ); // token with JSON stream item
 
 // creating a stream - see 'help data-all' in multichain for more options
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[], [['create' => 'stream', 'name' => 'stream1']]);
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[], [[
-	'create' => 'stream', 'name' => 'stream1', 'restrict' => 'read,write',
-	'details' => ['purpose' => 'inventory']
+    'create' => 'stream', 'name' => 'stream1', 'restrict' => 'read,write',
+    'details' => ['purpose' => 'inventory']
 ]]);
 
 // issuing assets - see 'help addresses-all' and 'help data-all' in multichain for more options
 $txhex = $mc->createrawsendfrom($fromaddress, [$address => ['issue' => ['raw' => 100000]]],
-	[['create' => 'asset', 'name' => 'asset1', 'multiple' => 100, 'open' => true]]); // issue fungible asset
+    [['create' => 'asset', 'name' => 'asset1', 'multiple' => 100, 'open' => true]]); // issue fungible asset
 $txhex = $mc->createrawsendfrom($fromaddress, [$address => ['issue' => ['raw' => 0]]],
-	[['create' => 'asset', 'name' => 'nfts1', 'open' => true, 'fungible' => false]]); // issue non-fungible asset
+    [['create' => 'asset', 'name' => 'nfts1', 'open' => true, 'fungible' => false]]); // issue non-fungible asset
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['issuemore' => ['asset' => 'asset1', 'raw' => 1000]]]); // issue more of fungible asset
+    [$address => ['issuemore' => ['asset' => 'asset1', 'raw' => 1000]]]); // issue more of fungible asset
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['issuetoken' => ['asset' => 'nfts1', 'raw' => 1, 'token' => 'token1']]]); // issue non-fungible token
+    [$address => ['issuetoken' => ['asset' => 'nfts1', 'raw' => 1, 'token' => 'token1']]]); // issue non-fungible token
 $txhex = $mc->createrawsendfrom($fromaddress, ['asset1' => ['open' => true]]); // change asset openness
 
 // setting permissions
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['permissions' => ['type' => 'send,receive']]]); // global permission grant
+    [$address => ['permissions' => ['type' => 'send,receive']]]); // global permission grant
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['permissions' => ['type' => 'send,receive', 'startblock' => 0, 'endblock' => 0]]]); // global permission revoke
+    [$address => ['permissions' => ['type' => 'send,receive', 'startblock' => 0, 'endblock' => 0]]]); // global permission revoke
 $txhex = $mc->createrawsendfrom($fromaddress,
-	[$address => ['permissions' => ['for' => 'stream1', 'type' => 'write']]]); // per-entity permission grant
+    [$address => ['permissions' => ['for' => 'stream1', 'type' => 'write']]]); // per-entity permission grant
 
 // creating and approving filters and upgrades
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['create' => 'txfilter', 'name' => 'txfilter1', 'code' => 'function filtertransaction() {}']]); // create tx filter
+    [['create' => 'txfilter', 'name' => 'txfilter1', 'code' => 'function filtertransaction() {}']]); // create tx filter
 $txhex = $mc->createrawsendfrom($fromaddress,
-	['txfilter1' => ['approve' => true]]); // approve tx filter
+    ['txfilter1' => ['approve' => true]]); // approve tx filter
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['create' => 'streamfilter', 'name' => 'streamfilter1', 'code' => 'function filterstreamitem() {}']]); // create stream filter
+    [['create' => 'streamfilter', 'name' => 'streamfilter1', 'code' => 'function filterstreamitem() {}']]); // create stream filter
 $txhex = $mc->createrawsendfrom($fromaddress,
-	['streamfilter1' => ['approve' => true, 'for' => 'stream1']]); // approve stream filter
+    ['streamfilter1' => ['approve' => true, 'for' => 'stream1']]); // approve stream filter
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['create' => 'upgrade', 'name' => 'upgrade1', 'details' => ['protocol-version' => 20013]]]);  // create upgrade
+    [['create' => 'upgrade', 'name' => 'upgrade1', 'details' => ['protocol-version' => 20013]]]);  // create upgrade
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['approve' => true, 'for' => 'upgrade1']]); // approve upgrade
+    [['approve' => true, 'for' => 'upgrade1']]); // approve upgrade
 
 // creating and updating variables
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['create' => 'variable', 'name' => 'var1']]); // create variable
+    [['create' => 'variable', 'name' => 'var1']]); // create variable
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['create' => 'variable', 'name' => 'var1', 'value' => 'london']]); // create variable with default value
+    [['create' => 'variable', 'name' => 'var1', 'value' => 'london']]); // create variable with default value
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['update' => 'var1', 'value' => 'new york']]); // update variable value
+    [['update' => 'var1', 'value' => 'new york']]); // update variable value
 
 // creating, updating, approving updates for libraries
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['create' => 'library', 'name' => 'lib1', 'updatemode' => 'approve', 'code' => 'function f1() {}']]); // create library
+    [['create' => 'library', 'name' => 'lib1', 'updatemode' => 'approve', 'code' => 'function f1() {}']]); // create library
 $txhex = $mc->createrawsendfrom($fromaddress, (object)[],
-	[['update' => 'lib1', 'updatename' => 'lib1_2', 'code' => 'function f1() {}']]); // update library code
+    [['update' => 'lib1', 'updatename' => 'lib1_2', 'code' => 'function f1() {}']]); // update library code
 $txhex = $mc->createrawsendfrom($fromaddress,
-	['lib1' => ['approve' => true, 'updatename' => 'lib1_2']]); // approve library update
+    ['lib1' => ['approve' => true, 'updatename' => 'lib1_2']]); // approve library update
 
 
 /******************************/
@@ -576,30 +580,30 @@ $hex = $mc->getdatarefdata($dataref, 1048576, 3145728); // paging within data
 $txid = $mc->approvefrom($fromaddress, 'txfilter1', true); // approve tx filter
 $txid = $mc->approvefrom($fromaddress, 'upgrade1', true); // approve upgrade
 $txid = $mc->approvefrom($fromaddress, 'streamfilter1',
-	['for' => 'stream1', 'approve' => true]); // approve stream filter
+    ['for' => 'stream1', 'approve' => true]); // approve stream filter
 
 $txid = $mc->create('streamfilter', 'streamfilter1', (object)[],
-	'function filterstreamitem() {}'); // create stream filter
+    'function filterstreamitem() {}'); // create stream filter
 $txid = $mc->create('streamfilter', 'streamfilter1', ['libraries' => ['lib1', 'lib2']],
-	'function filterstreamitem() {}'); // create stream filter that uses libraries
+    'function filterstreamitem() {}'); // create stream filter that uses libraries
 $txid = $mc->createfrom($fromaddress, 'streamfilter', 'streamfilter1', (object)[],
-	'function filterstreamitem() {}'); // create stream filter from specific address
+    'function filterstreamitem() {}'); // create stream filter from specific address
 
 $txid = $mc->create('txfilter', 'txfilter1', (object)[],
-	'function filtertransaction() {}'); // create tx filter
+    'function filtertransaction() {}'); // create tx filter
 $txid = $mc->create('txfilter', 'txfilter1', ['libraries' => ['lib1', 'lib2']],
-	'function filtertransaction() {}'); // create tx filter that uses libraries
+    'function filtertransaction() {}'); // create tx filter that uses libraries
 $txid = $mc->create('txfilter', 'txfilter1', ['for' => 'asset1'],
-	'function filtertransaction() {}'); // create tx filter active for one entity only
+    'function filtertransaction() {}'); // create tx filter active for one entity only
 $txid = $mc->create('txfilter', 'txfilter1', ['for' => ['asset1', 'asset2']],
-	'function filtertransaction() {}'); // create tx filter active for specific entities only
+    'function filtertransaction() {}'); // create tx filter active for specific entities only
 $txid = $mc->createfrom($fromaddress, 'txfilter', 'txfilter1', (object)[],
-	'function filtertransaction() {}'); // create tx filter from specific address
+    'function filtertransaction() {}'); // create tx filter from specific address
 
 $txid = $mc->create('upgrade', 'upgrade1', false,
-	['protocol-version' => 20013, 'maximum-block-size' => 16777216]); // create upgrade
+    ['protocol-version' => 20013, 'maximum-block-size' => 16777216]); // create upgrade
 $txid = $mc->createfrom($fromaddress, 'upgrade', 'upgrade1', false,
-	['protocol-version' => 20013, 'maximum-block-size' => 16777216]); // create upgrade from specific address
+    ['protocol-version' => 20013, 'maximum-block-size' => 16777216]); // create upgrade from specific address
 
 $code = $mc->getfiltercode('filter1');
 

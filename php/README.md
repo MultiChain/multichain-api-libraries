@@ -1,5 +1,5 @@
-MultiChain API Library for PHP
-==============================
+MultiChain JSON-RPC API Library for PHP
+=======================================
 
 Official PHP library for the [JSON-RPC API](https://www.multichain.com/developers/json-rpc-api/) of [MultiChain](https://www.multichain.com/), the enterprise blockchain platform. This library uses a "catch-all" approach rather than a fixed list of API commands and parameters, so it will continue to work as new commands and parameters appear in new versions of MultiChain.
 
@@ -23,30 +23,30 @@ How to Use the Library
 3. Within your code, initialize the connection to MultiChain as follows, replacing variable values as appropriate:
 
 ```	
-	$rpchost='127.0.0.1'; // change if multichaind is not running locally
-	$rpcport=1234; // usually default-rpc-port in blockchain parameters
-	$rpcuser='multichainrpc'; // see multichain.conf in blockchain directory
-	$rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
+$rpchost='127.0.0.1'; // change if multichaind is not running locally
+$rpcport=1234; // usually default-rpc-port in blockchain parameters
+$rpcuser='multichainrpc'; // see multichain.conf in blockchain directory
+$rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
 
-	$mc=new MultiChainClient($rpchost, $rpcport, $rpcuser, $rpcpassword);
+$mc=new MultiChainClient($rpchost, $rpcport, $rpcuser, $rpcpassword);
 ```
 
 4. Access any of MultiChain's [API commands](https://www.multichain.com/developers/json-rpc-api/) in the intuitive way, e.g.:
 
 ```
-	$txid=$mc->publish('stream1', 'key1', ['json' => ['name' => 'John', 'age' => 30]]);
+$txid=$mc->publish('stream1', 'key1', ['json' => ['name' => 'John', 'age' => 30]]);
 ```
 
 5. Check for errors after any API command, including those which return no results, as follows:
 
 ```
-	if ($mc->success()) {
-		// operation was successful
-	
-	} else { // operation failed		
-		echo 'Error code: '.$mc->errorcode()."\n";
-		echo 'Error message: '.$mc->errormessage()."\n";
-	}
+if ($mc->success()) {
+	// operation was successful
+
+} else { // operation failed		
+	echo 'Error code: '.$mc->errorcode()."\n";
+	echo 'Error message: '.$mc->errormessage()."\n";
+}
 ```
 
 6. The JSON data types used by the MultiChain API map naturally to PHP types, including strings, numbers, booleans and null. Use a PHP indexed array to represent a JSON array, and a PHP associative array to represent a JSON object. If you're not sure what to expect in an API response, PHP's `print_r()` and `var_dump()` functions can help.
@@ -62,19 +62,19 @@ If `multichaind` is running on a different server to your application, you may w
 After setting up the API proxy, use this library to connect to it as follows:
 
 ```
-	$sslhost='34.56.78.90'; // host where SSL proxy is running
-	$sslport=1234; // incoming port of SSL proxy
-	$rpcuser='multichainrpc'; // see multichain.conf in blockchain directory
-	$rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
-	$usessl=true;
+$sslhost='34.56.78.90'; // host where SSL proxy is running
+$sslport=1234; // incoming port of SSL proxy
+$rpcuser='multichainrpc'; // see multichain.conf in blockchain directory
+$rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
+$usessl=true;
 
-	$mc=new MultiChainClient($sslhost, $sslport, $rpcuser, $rpcpassword, $usessl);
+$mc=new MultiChainClient($sslhost, $sslport, $rpcuser, $rpcpassword, $usessl);
 ```
 
 If you wish to turn off SSL certification verification (less secure), call this immediately afterwards:
 
 ```
-	$mc->setoption(MC_OPT_VERIFY_SSL, false);
+$mc->setoption(MC_OPT_VERIFY_SSL, false);
 ```
 
 
@@ -86,11 +86,11 @@ All options should be set after creating the `$mc` object and before sending API
 * To verify the blockchain name, set the option below. If the chain name does not match, all API commands will return an error.
 
 ```
-	$mc->setoption(MC_OPT_CHAIN_NAME, 'chain1');
+$mc->setoption(MC_OPT_CHAIN_NAME, 'chain1');
 ```
 
 * By default, this library uses curl if SSL is enabled, and a direct socket connection otherwise. To use curl in all cases, set the option below: 
 
 ```
-	$mc->setoption(MC_OPT_USE_CURL,true);
+$mc->setoption(MC_OPT_USE_CURL,true);
 ```
