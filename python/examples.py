@@ -5,7 +5,7 @@
 #   All rights reserved under BSD 3-clause license
 #   
 #   Examples of Python library usage, for more details see:
-#   https:#www.multichain.com/developers/json-rpc-api/
+#   https://www.multichain.com/developers/json-rpc-api/
 
 
 exit() # in case this file is included accidentally!
@@ -102,7 +102,7 @@ result = mc.listassetissues('asset1', False, 10, 30) # paging through issues
 
 result = mc.listassets() # all assets
 result = mc.listassets('asset1') # one specific asset
-result = mc.listassets({'asset1', 'asset2'}) # multiple specific assets
+result = mc.listassets(['asset1', 'asset2']) # multiple specific assets
 result = mc.listassets('*', False, 10, 30) # paging through assets
 
 txid = mc.update('asset1', {'open' : True})
