@@ -709,5 +709,3 @@ $result = $mc->listlicenses(); // all licenses
 $result = $mc->listlicenses('license-a1b2-c3d4-e5f6-7890'); // one specific license
 $result = $mc->listlicenses([$license1, $license2]); // multiple specific licenses
 $txid = $mc->transferlicense('license-a1b2-c3d4-e5f6-7890', $hex);
-
-?>
