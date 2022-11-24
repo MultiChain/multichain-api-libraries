@@ -28,7 +28,7 @@ rpcport=1234 # usually default-rpc-port in blockchain parameters
 rpcuser='multichainrpc' # see multichain.conf in blockchain directory
 rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3' # see multichain.conf in blockchain directory
 
-mc=MultiChainClient(rpchost, rpcport, rpcuser, rpcpassword);
+mc=MultiChainClient(rpchost, rpcport, rpcuser, rpcpassword)
 ```
 
 4. Access any of MultiChain's [API commands](https://www.multichain.com/developers/json-rpc-api/) in the intuitive way, e.g.:
@@ -65,7 +65,7 @@ sslhost='34.56.78.90' # host where SSL proxy is running
 sslport=1234 # incoming port of SSL proxy
 rpcuser='multichainrpc' # see multichain.conf in blockchain directory
 rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3' # see multichain.conf in blockchain directory
-usessl=true
+usessl=True
 
 mc=MultiChainClient(sslhost, sslport, rpcuser, rpcpassword, usessl)
 ```
