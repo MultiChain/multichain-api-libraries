@@ -177,7 +177,7 @@ result = mc.preparelockunspentfrom(fromaddress, {'asset1' : 10})
 #########################
 
 # see online API documentation for more options when creating a stream
-txid = mc.create('stream', 'stream1', False) # open to all to write
+txid = mc.create('stream', 'stream1', True) # open to all to write
 txid = mc.create('stream', 'stream1', {'restrict' : 'write'}) # write-restricted
 txid = mc.create('stream', 'stream1', {'restrict' : 'write,read'}) # read/write-restricted (requires Enterprise)
 txid = mc.create('stream', 'stream1', False, {'purpose' : 'inventory'}) # custom fields
