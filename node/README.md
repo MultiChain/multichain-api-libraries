@@ -45,7 +45,7 @@ mc.publish('stream1', 'key1', {'json' : {'name' : 'John', 'age' : 30}}, (status,
 });
 ```
 
-5. Of course, the JSON data types used by the MultiChain API map naturally to JavaScript types, including strings, numbers, booleans, arrays, objects and null. If you're not sure what to expect in an API response, `console.log()` and the `JSON.stringify()` function can help.
+5. If you're not sure what to expect in an API response, `console.log()` and the `JSON.stringify()` function can help.
 
 6. See the `examples.js` file for an extensive list of examples.
 
@@ -67,7 +67,7 @@ var usessl=true;
 const mc=new MultiChainClient(rpchost, rpcport, rpcuser, rpcpassword, usessl);
 ```
 
-If you wish to turn off SSL certification verification (less secure), set the `NODE_TLS_REJECT_UNAUTHORIZED` [environment variable](https://nodejs.org/api/cli.html#node_tls_reject_unauthorizedvalue) to `0` when running your Node.js project.
+If you wish to turn off SSL certification verification (less secure), set the `NODE_TLS_REJECT_UNAUTHORIZED` environment variable to `0` when running your Node.js project.
 
 
 Other Options
