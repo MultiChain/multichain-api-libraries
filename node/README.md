@@ -31,10 +31,10 @@ var rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichai
 const mc=new MultiChainClient(rpchost, rpcport, rpcuser, rpcpassword);
 ```
 
-4. Access any of MultiChain's [API commands](https://www.multichain.com/developers/json-rpc-api/) in the intuitive way. The last parameter is a callback function that takes two arguments. The first argument is a `status` object containing three properties – `success`, `errorcode` and `errormessage`. The second contains the result of the API call. For example:
+4. Access any of MultiChain's [API commands](https://www.multichain.com/developers/json-rpc-api/) in the intuitive way. The last parameter is a callback function that is called with two arguments. The first argument is a `status` object containing three properties – `success`, `errorcode` and `errormessage`. The second contains the result of the API call. Example of usage:
 
 ```
-mc.publish('stream1', 'key1', ['json' => ['name' => 'John', 'age' => 30]], (status, txid) => {
+mc.publish('stream1', 'key1', {'json' : {'name' : 'John', 'age' : 30}}, (status, txid) => {
 	if (status.success) {
 		// operation was successful, do something with txid
 
