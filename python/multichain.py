@@ -3,8 +3,26 @@
 #   Copyright (c) Coin Sciences Ltd - www.multichain.com
 #   
 #   All rights reserved under BSD 3-clause license
+
+
+#   Example of use: (see README.md and examples.py for more instructions and examples)
 #   
-#   See README file for instructions and examples.py for examples
+#   rpchost='127.0.0.1' # change if multichaind is not running locally
+#   rpcport=1234 # usually default-rpc-port in blockchain parameters
+#   rpcuser='multichainrpc' # see multichain.conf in blockchain directory
+#   rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3' # see multichain.conf in blockchain directory
+#   usessl=False # use with SSL requires an proxy for MultiChain API endpoint
+#   
+#   mc=MultiChainClient(sslhost, sslport, rpcuser, rpcpassword, usessl)
+#   
+#   txid=mc.publish('stream1', 'key1', {'json' : {'name' : 'John', 'age' : 30}})
+#   
+#   if mc.success():
+#   	pass # operation was successful
+#   
+#   else: # operation failed		
+#   	print('Error code: '+str(mc.errorcode())+'\n')
+#   	print('Error message: '+mc.errormessage()+'\n')
 
 
 from urllib import request

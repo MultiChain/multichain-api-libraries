@@ -4,8 +4,28 @@
     Copyright (c) Coin Sciences Ltd - www.multichain.com
 
     All rights reserved under BSD 3-clause license
+*/
+
+/*
+    Example of use: (see README.md and examples.js for more instructions and examples)
     
-    See README file for instructions and examples.js for examples
+    var rpchost='127.0.0.1'; // change if multichaind is not running locally
+    var rpcport=1234; // usually default-rpc-port in blockchain parameters
+    var rpcuser='multichainrpc'; // see multichain.conf in blockchain directory
+    var rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
+    var usessl=false; // use with SSL requires an proxy for MultiChain API endpoint
+    
+    const mc=new MultiChainClient(rpchost, rpcport, rpcuser, rpcpassword, usessl);
+    
+    mc.publish('stream1', 'key1', {'json' : {'name' : 'John', 'age' : 30}}, (status, txid) => {
+        if (status.success) {
+            // operation was successful, do something with txid
+            
+        } else { // operation failed
+            console.log('Error code: '+status.errorcode);
+            console.log('Error message: '+status.errormessage);
+        }
+    });
 */
 
 

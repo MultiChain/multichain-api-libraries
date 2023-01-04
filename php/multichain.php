@@ -6,8 +6,28 @@
     Copyright (c) Coin Sciences Ltd - www.multichain.com
 
     All rights reserved under BSD 3-clause license
+*/
+
+/*
+    Example of use: (see README.md and examples.php for more instructions and examples)
     
-    See README file for instructions and examples.php for examples
+    $rpchost='127.0.0.1'; // change if multichaind is not running locally
+    $rpcport=1234; // usually default-rpc-port in blockchain parameters
+    $rpcuser='multichainrpc'; // see multichain.conf in blockchain directory
+    $rpcpassword='CowAa1xM47GVrasYq71UU2KfhNV9fCuba28WkoiZmCa3'; // see multichain.conf in blockchain directory
+    $usessl=false; // use with SSL requires an proxy for MultiChain API endpoint
+    
+    $mc=new MultiChainClient($rpchost, $rpcport, $rpcuser, $rpcpassword, $usessl);
+    
+    $txid=$mc->publish('stream1', 'key1', ['json' => ['name' => 'John', 'age' => 30]]);
+    
+    if ($mc->success()) {
+        // operation was successful
+    
+    } else { // operation failed        
+        echo 'Error code: '.$mc->errorcode()."\n";
+        echo 'Error message: '.$mc->errormessage()."\n";
+    }
 */
 
 
